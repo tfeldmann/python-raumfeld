@@ -1,16 +1,20 @@
+# -*- coding: utf-8 -*-
 """
 A pythonic library to discover and control Teufel Raumfeld speakers
-
 """
+
 import socket
 try:
     from urllib.parse import urlparse  # python3
 except ImportError:
-    from urlparse import urlparse  # python2
+    from urlparse import urlparse      # python2
 from pysimplesoap.client import SoapClient
 from pysimplesoap.simplexml import SimpleXMLElement
 from pysimplesoap.helpers import fetch
 from pysimplesoap.transport import get_Http
+
+
+version = '0.2'
 
 
 def discover(timeout=1, retries=1):
@@ -21,21 +25,27 @@ def discover(timeout=1, retries=1):
     :returns: A list of raumfeld devices
     """
     locations = []
-    group = b'239.255.255.250', 1900
+
+    group = ('239.255.255.250', 1900)
+    service = 'ssdp:urn:schemas-upnp-org:device:MediaRenderer:1'  # 'ssdp:all'
     message = '\r\n'.join(['M-SEARCH * HTTP/1.1',
-                           'HOST: {0}:{1}'.format(*group),
+                           'HOST: {group[0]}:{group[1]}',
                            'MAN: "ssdp:discover"',
                            'ST: {st}',
-                           'MX: 1', '', ''])
-    service = b'ssdp:urn:schemas-upnp-org:device:MediaRenderer:1'  # 'ssdp:all'
+                           'MX: 1', '', '']).format(group=group, st=service)
 
     socket.setdefaulttimeout(timeout)
     for _ in range(retries):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM,
+        sock = socket.socket(socket.AF_INET,
+                             socket.SOCK_DGRAM,
                              socket.IPPROTO_UDP)
+        # socket options
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 2)
-        sock.sendto(message.format(st=service).encode('utf-8'), group)
+
+        # send group multicast
+        sock.sendto(message.encode('utf-8'), group)
+
         while True:
             try:
                 response = sock.recv(2048).decode('utf-8')
@@ -120,11 +130,12 @@ class RaumfeldDevice(object):
 
 
 if __name__ == '__main__':
+    print('Library version %s' % version)
     devices = discover()
-    print(devices)
+    print('Devices: %s' % devices)
     if len(devices) > 0:
         device = devices.pop()
-        print(device.volume)
-        print(device.mute)
+        print('Volume: %s' % device.volume)
+        print('Muted: %s' % device.mute)
     else:
         print('No Raumfeld devices found!')
