@@ -15,6 +15,7 @@ from pysimplesoap.transport import get_Http
 
 
 __version__ = '0.2'
+__all__ = ['discover', 'RaumfeldDevice']
 
 
 def discover(timeout=1, retries=1):
