@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 """
 A pythonic library to discover and control Teufel Raumfeld speakers
 """
