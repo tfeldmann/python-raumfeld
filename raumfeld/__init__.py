@@ -14,7 +14,7 @@ from pysimplesoap.helpers import fetch
 from pysimplesoap.transport import get_Http
 
 
-version = '0.2'
+__version__ = '0.2'
 
 
 def discover(timeout=1, retries=1):
@@ -130,7 +130,7 @@ class RaumfeldDevice(object):
 
 
 if __name__ == '__main__':
-    print('Library version %s' % version)
+    print('Library version %s' % __version__)
     devices = discover()
     print('Devices: %s' % devices)
     if len(devices) > 0:
