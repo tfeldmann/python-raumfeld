@@ -1,21 +1,26 @@
-import os
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as f:
+requires = ['pysimplesoap']
+packages = ['raumfeld']
+
+with open('README.rst') as f:
     readme = f.read()
 
 setup(
     name='raumfeld',
-    packages=['raumfeld'],
-    version=__import__('raumfeld').__version__,
-    install_requires=['pysimplesoap'],
-    license='MIT',
+    version='0.2',
     description='A pythonic library for discovering and controlling Teufel '
                 'Raumfeld devices.',
-    long_description=readme,
+    license='MIT',
     author='Thomas Feldmann',
     author_email='feldmann.thomas@gmail.com',
     url='https://github.com/tfeldmann/python-raumfeld',
+    long_description=readme,
+    packages=packages,
+    install_requires=requires,
     keywords=['raumfeld', 'upnp', 'soap'],
     classifiers=[
         'License :: OSI Approved :: MIT License',
