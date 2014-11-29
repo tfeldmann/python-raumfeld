@@ -97,6 +97,18 @@ class RaumfeldDevice(object):
     def play(self):
         """Start playing"""
         self.av_transport.Play(InstanceID=1, Speed=2)
+    
+    def playURI(self, value):
+        self.av_transport.SetAVTransportURI(InstanceID=1, CurrentURI=value, CurrentURIMetaData="")
+    
+    def next(self):
+        """Next"""
+        self.av_transport.Next(InstanceID=1)
+
+    def previous(self):
+        """Previous"""
+        self.av_transport.Previous(InstanceID=1)
+    
 
     def pause(self):
         """Pause"""
