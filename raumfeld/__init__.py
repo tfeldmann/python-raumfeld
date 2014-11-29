@@ -109,7 +109,6 @@ class RaumfeldDevice(object):
         """Previous"""
         self.av_transport.Previous(InstanceID=1)
     
-
     def pause(self):
         """Pause"""
         self.av_transport.Pause(InstanceID=1)
