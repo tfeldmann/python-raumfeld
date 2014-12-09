@@ -133,6 +133,22 @@ class RaumfeldDevice(object):
         response = self.rendering_control.GetMute(InstanceID=1, Channel=1)
         return response.CurrentMute == 1
 
+    def currentURI(self):
+        """Get CurrentURI"""
+        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURI
+
+    def currentURIMetaData(self):
+        """Get CurrentURIMetaData"""
+        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURIMetaData
+
+    def trackURI(self):
+        """Get TrackURI"""
+        return self.av_transport.GetPositionInfo(InstanceID=1).TrackURI
+
+    def trackMetaData(self):
+        """Get TrackURIMetaData"""
+        return self.av_transport.GetPositionInfo(InstanceID=1).TrackMetaData
+
     @mute.setter
     def mute(self, value):
         self.rendering_control.SetMute(InstanceID=1,
