@@ -95,13 +95,17 @@ class RaumfeldDevice(object):
             namespace='http://schemas.xmlsoap.org/soap/envelope/',
             soap_ns='soap', ns='s', exceptions=True)
 
-    def play(self):
-        """Start playing"""
-        self.av_transport.Play(InstanceID=1, Speed=2)
-    
-    def playURI(self, value):
-        self.av_transport.SetAVTransportURI(InstanceID=1, CurrentURI=value, CurrentURIMetaData="")
-    
+    def play(self, uri=None):
+        """Start playing
+
+        :param uri: (optional) play a specific uri
+        """
+        if uri:
+            self.av_transport.SetAVTransportURI(
+                InstanceID=1, CurrentURI=uri, CurrentURIMetaData="")
+        else:
+            self.av_transport.Play(InstanceID=1, Speed=2)
+
     def next(self):
         """Next"""
         self.av_transport.Next(InstanceID=1)
@@ -109,15 +113,16 @@ class RaumfeldDevice(object):
     def previous(self):
         """Previous"""
         self.av_transport.Previous(InstanceID=1)
-    
+
     def pause(self):
         """Pause"""
         self.av_transport.Pause(InstanceID=1)
 
     @property
-    def curTransState(self):
+    def transport_state(self):
         """Get Current Transport State"""
-        return self.av_transport.GetTransportInfo(InstanceID=1).CurrentTransportState
+        return (self.av_transport.GetTransportInfo(InstanceID=1)
+                .CurrentTransportState)
 
     @property
     def volume(self):
@@ -134,26 +139,30 @@ class RaumfeldDevice(object):
         response = self.rendering_control.GetMute(InstanceID=1, Channel=1)
         return response.CurrentMute == 1
 
-    def currentURI(self):
-        """Get CurrentURI"""
-        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURI
-
-    def currentURIMetaData(self):
-        """Get CurrentURIMetaData"""
-        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURIMetaData
-
-    def trackURI(self):
-        """Get TrackURI"""
-        return self.av_transport.GetPositionInfo(InstanceID=1).TrackURI
-
-    def trackMetaData(self):
-        """Get TrackURIMetaData"""
-        return self.av_transport.GetPositionInfo(InstanceID=1).TrackMetaData
-
     @mute.setter
     def mute(self, value):
         self.rendering_control.SetMute(InstanceID=1,
                                        DesiredMute=1 if value else 0)
+
+    @property
+    def uri(self):
+        """Get the uri of the currently played medium"""
+        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURI
+
+    @property
+    def uri_metadata(self):
+        """Get CurrentURIMetaData"""
+        return self.av_transport.GetMediaInfo(InstanceID=1).CurrentURIMetaData
+
+    @property
+    def track_uri(self):
+        """Get TrackURI"""
+        return self.av_transport.GetPositionInfo(InstanceID=1).TrackURI
+
+    @property
+    def track_metadata(self):
+        """Get TrackURIMetaData"""
+        return self.av_transport.GetPositionInfo(InstanceID=1).TrackMetaData
 
     def __repr__(self):
         return ('<RaumfeldDevice(location="{0}", name="{1}")>'
