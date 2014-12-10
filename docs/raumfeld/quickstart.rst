@@ -1,31 +1,5 @@
-.. image:: https://readthedocs.org/projects/python-raumfeld/badge/
-    :target: http://python-raumfeld.readthedocs.org
-
-
-python-raumfeld
-===============
-
-A pythonic library for discovering and controlling Teufel Raumfeld
-devices.
-
-Tested with a Raumfeld One. Hardware donations to improve the library
-are welcome :smile:
-
-Supports Python >2.7, 3.x
-
-
-Installation
-------------
-
-Install the library with pip::
-
-    pip install raumfeld
-
-
-.. include:: docs/raumfeld/discovery.rst
-
 Quickstart
-----------
+==========
 
 .. code:: python
 
