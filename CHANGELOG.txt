@@ -2,6 +2,10 @@ Changelog
 =========
 
 v0.2
+## wip
+- raumfeld.discover() now sorts the devices by name
+
+## v0.2
 - Explicitely encode into utf-8 to fix a bug where no devices where found
 
 v0.1

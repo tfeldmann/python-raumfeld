@@ -23,7 +23,7 @@ def discover(timeout=1, retries=1):
 
     :param timeout: The timeout in seconds
     :param retries: How often the search should be retried
-    :returns: A list of raumfeld devices
+    :returns:       A list of raumfeld devices, sorted by name
     """
     locations = []
 
@@ -59,9 +59,10 @@ def discover(timeout=1, retries=1):
                 break
     devices = [RaumfeldDevice(location) for location in locations]
 
-    # only return 'Virtual Media Player'
-    return [device for device in devices
-            if device.model_description == 'Virtual Media Player']
+    # only return 'Virtual Media Player' and sort the list
+    return sorted([device for device in devices
+                   if device.model_description == 'Virtual Media Player'],
+                  key=lambda device: device.friendly_name)
 
 
 class RaumfeldDevice(object):
