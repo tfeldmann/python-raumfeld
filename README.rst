@@ -1,3 +1,5 @@
+.. image:: https://readthedocs.org/projects/python-raumfeld/badge/
+
 python-raumfeld
 ===============
 
@@ -37,4 +39,3 @@ Quickstart
         speaker.play()
     else:
         print('No devices found.')
-
