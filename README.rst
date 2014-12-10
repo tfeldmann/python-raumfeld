@@ -1,6 +1,6 @@
-See the documentation at Readthedocs:
+Documentation is hosted on readthedocs.org: |rdt-badge|
 
-.. image:: https://readthedocs.org/projects/python-raumfeld/badge/
+.. |rdt-badge| image:: https://readthedocs.org/projects/python-raumfeld/badge/
     :target: http://python-raumfeld.readthedocs.org
 
 
