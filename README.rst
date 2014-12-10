@@ -1,8 +1,5 @@
-Documentation is hosted on readthedocs.org: |rdt-badge|
-
-.. |rdt-badge| image:: https://readthedocs.org/projects/python-raumfeld/badge/
+.. image:: https://readthedocs.org/projects/python-raumfeld/badge/
     :target: http://python-raumfeld.readthedocs.org
-    :align:  middle
 
 
 python-raumfeld
