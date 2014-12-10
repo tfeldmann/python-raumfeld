@@ -9,8 +9,10 @@ A pythonic library for discovering and controlling Teufel Raumfeld
 devices.
 
 Tested with a Raumfeld One. Hardware donations to improve the library
-are welcome :smile:
+are welcome.
 
+Documentation is hosted on ReadTheDocs: `python-raumfeld documentation
+<http://python-raumfeld.readthedocs.org/>`_.
 Supports Python >2.7, 3.x
 
 
@@ -21,8 +23,6 @@ Install the library with pip::
 
     pip install raumfeld
 
-
-.. include:: docs/raumfeld/discovery.rst
 
 Quickstart
 ----------

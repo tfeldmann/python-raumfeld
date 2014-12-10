@@ -13,6 +13,7 @@ Contents:
    :glob:
 
    raumfeld/installation
+   raumfeld/quickstart
    raumfeld/discovery
    raumfeld/device_control
 
