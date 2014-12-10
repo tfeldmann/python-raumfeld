@@ -1,6 +1,8 @@
 See the documentation at Readthedocs:
+
 .. image:: https://readthedocs.org/projects/python-raumfeld/badge/
-    :target: http://raumfeld-python.readthedocs.org
+    :target: http://python-raumfeld.readthedocs.org
+
 
 python-raumfeld
 ===============
