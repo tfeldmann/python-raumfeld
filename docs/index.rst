@@ -10,9 +10,11 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :glob:
 
-.. automodule:: raumfeld
-   :members:
+   raumfeld/installation
+   raumfeld/discovery
+   raumfeld/device_control
 
 
 Indices and tables
