@@ -1,4 +1,6 @@
+See the documentation at Readthedocs:
 .. image:: https://readthedocs.org/projects/python-raumfeld/badge/
+    :target: http://raumfeld-python.readthedocs.org
 
 python-raumfeld
 ===============
@@ -11,12 +13,14 @@ are welcome :smile:
 
 Supports Python >2.7, 3.x
 
+
 Installation
 ------------
 
-::
+Install the library with pip::
 
     pip install raumfeld
+
 
 Quickstart
 ----------
